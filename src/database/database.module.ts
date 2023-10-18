@@ -16,7 +16,7 @@ dotenv.config();
       database: process.env.DB_DATABASE,
       entities: [join(__dirname, '**', '*.entity{.ts,.js}')],
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
   ],
 })
