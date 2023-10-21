@@ -8,14 +8,7 @@ import { User } from 'src/users/entity/user.entity';
 import { Info } from 'src/info/entity/info.entity';
 
 @Module({
-  imports: [
-    UsersModule,
-    TypeOrmModule.forFeature([User, Info]),
-    CorsModule.forRoot({
-      origin: '*',
-      credentials: true,
-    }),
-  ],
+  imports: [UsersModule, TypeOrmModule.forFeature([User, Info])],
   controllers: [],
   providers: [AuthService, AuthGuard, UserService],
 })
