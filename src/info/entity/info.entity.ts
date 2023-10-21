@@ -17,6 +17,6 @@ export class Info {
   @Column()
   percentage: number;
 
-  @Column()
+  @Column({ unique: true })
   userId: number;
 }
