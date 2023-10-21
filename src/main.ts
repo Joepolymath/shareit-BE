@@ -1,21 +1,19 @@
 import { NestFactory } from '@nestjs/core';
-import * as dotenv from 'dotenv';
+import { Logger } from '@nestjs/common';
 import { createConnection } from 'typeorm';
 
 import { AppModule } from './app.module';
+import { PORT } from './common/env';
 
 async function bootstrap() {
-  dotenv.config();
-  const PORT = process.env.PORT;
   const app = await NestFactory.create(AppModule);
 
   const connection = await createConnection();
 
-  connection.isInitialized &&
-    console.log('Database connection established successfully');
-
   await app.listen(PORT, () => {
-    console.log(`Server Actively Listening @ port ${PORT}`);
+    Logger.log(`Server Actively Listening @ port ${PORT}`);
+    connection.isInitialized &&
+      Logger.log('Database connection established successfully');
   });
 }
 bootstrap();
