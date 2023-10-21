@@ -4,6 +4,7 @@ import {
   IsString,
   MinLength,
   IsNumber,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateInfoDto {
@@ -24,7 +25,33 @@ export class CreateInfoDto {
   @IsNotEmpty()
   percentage: number;
 
+  @IsString()
+  @IsNotEmpty()
+  userUid: string;
+}
+export class UpdateInfoDto {
   @IsNumber()
-  @IsEmpty()
-  userId: number;
+  @IsNotEmpty()
+  id: number;
+
+  @IsString()
+  @MinLength(2, { message: 'Name must have atleast 2 characters.' })
+  @IsOptional()
+  companyName: string;
+
+  @IsNumber()
+  @IsOptional()
+  usersQuantity: number;
+
+  @IsNumber()
+  @IsOptional()
+  productsQuantity: number;
+
+  @IsNumber()
+  @IsOptional()
+  percentage: number;
+
+  @IsString()
+  @IsOptional()
+  userUid: string;
 }
